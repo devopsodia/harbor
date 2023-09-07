@@ -224,20 +224,20 @@ persistence:
     chartmuseum:
       existingClaim: "harbor-chartmuseum"
       storageClass: "harbor-nfs-sc"
-      subPath: "/srv/nfs/kubedata/harbor"
+      subPath: ""
       accessMode: ReadWriteOnce
       size: 5Gi
       annotations: {}
     jobservice:
       jobLog:
-        existingClaim: "harbor-pvc"
+        existingClaim: "harbor-jobservice"
         storageClass: "harbor-nfs-sc"
-        subPath: "/srv/nfs/kubedata/harbor"
+        subPath: ""
         accessMode: ReadWriteOnce
         size: 1Gi
         annotations: {}
       scanDataExports:
-        existingClaim: "harbor-pvc"
+        existingClaim: "harbor-jobservice-scandata"
         storageClass: "harbor-nfs-sc"
         subPath: "/srv/nfs/kubedata/harbor"
         accessMode: ReadWriteOnce
