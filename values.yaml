@@ -239,7 +239,7 @@ persistence:
       scanDataExports:
         existingClaim: "harbor-jobservice-scandata"
         storageClass: "harbor-nfs-sc"
-        subPath: "/srv/nfs/kubedata/harbor"
+        subPath: ""
         accessMode: ReadWriteOnce
         size: 1Gi
         annotations: {}
