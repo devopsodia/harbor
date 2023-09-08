@@ -224,7 +224,7 @@ persistence:
     chartmuseum:
       existingClaim: "harbor-pvc"
       storageClass: "harbor-nfs-sc"
-      subPath: ""
+      subPath: "/srv/nfs/kubedata/storage"
       accessMode: ReadWriteOnce
       size: 5Gi
       annotations: {}
@@ -232,14 +232,14 @@ persistence:
       jobLog:
         existingClaim: "harbor-pvc"
         storageClass: "harbor-nfs-sc"
-        subPath: ""
+        subPath: "/srv/nfs/kubedata/storage"
         accessMode: ReadWriteOnce
         size: 1Gi
         annotations: {}
       scanDataExports:
         existingClaim: "harbor-pvc"
         storageClass: "harbor-nfs-sc"
-        subPath: ""
+        subPath: "/srv/nfs/kubedata/storage"
         accessMode: ReadWriteOnce
         size: 1Gi
         annotations: {}
@@ -264,7 +264,7 @@ persistence:
     trivy:
       existingClaim: "harbor-pvc"
       storageClass: "harbor-nfs-sc"
-      subPath: "/srv/nfs/kubedata/"
+      subPath: "/srv/nfs/kubedata/storage"
       accessMode: ReadWriteOnce
       size: 5Gi
       annotations: {}
