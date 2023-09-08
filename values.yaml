@@ -34,7 +34,7 @@ expose:
   ingress:
     hosts:
       core: devopsodia-harbor.com
-      notary: notary.devopsodia-harbor.com
+      notary: notary.harbor.domain
     # set to the type of ingress controller if it has specific requirements.
     # leave as `default` for most ingress controllers.
     # set to `gce` if using the GCE ingress controller
@@ -43,7 +43,7 @@ expose:
     controller: default
     ## Allow .Capabilities.KubeVersion.Version to be overridden while creating ingress
     kubeVersionOverride: ""
-    className: ""
+    className: "nginx"
     annotations:
       # note different ingress controllers may require a different ssl-redirect annotation
       # for Envoy, use ingress.kubernetes.io/force-ssl-redirect: "true" and remove the nginx lines below
@@ -123,7 +123,7 @@ expose:
 # the IP address of k8s node
 #
 # If Harbor is deployed behind the proxy, set it as the URL of proxy
-#externalURL: https://core.harbor.domain
+externalURL: https://devopsodia-harbor.com
 
 # The internal TLS used for harbor components secure communicating. In order to enable https
 # in each components tls cert files need to provided in advance.
@@ -212,17 +212,17 @@ persistence:
     registry:
       # Use the existing PVC which must be created manually before bound,
       # and specify the "subPath" if the PVC is shared with other components
-      existingClaim: "harbor-pvc"
+      existingClaim: ""
       # Specify the "storageClass" used to provision the volume. Or the default
       # StorageClass will be used (the default).
       # Set it to "-" to disable dynamic provisioning
-      storageClass: "_"
+      storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteOnce
       size: 5Gi
       annotations: {}
     chartmuseum:
-      existingClaim: "harbor-pvc"
+      existingClaim: ""
       storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteOnce
@@ -230,14 +230,14 @@ persistence:
       annotations: {}
     jobservice:
       jobLog:
-        existingClaim: "harbor-pvc"
+        existingClaim: ""
         storageClass: "harbor-nfs-sc"
         subPath: ""
         accessMode: ReadWriteOnce
         size: 1Gi
         annotations: {}
       scanDataExports:
-        existingClaim: "harbor-pvc"
+        existingClaim: ""
         storageClass: "harbor-nfs-sc"
         subPath: ""
         accessMode: ReadWriteOnce
@@ -246,7 +246,7 @@ persistence:
     # If external database is used, the following settings for database will
     # be ignored
     database:
-      existingClaim: "harbor-pvc"
+      existingClaim: ""
       storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteOnce
@@ -255,14 +255,14 @@ persistence:
     # If external Redis is used, the following settings for Redis will
     # be ignored
     redis:
-      existingClaim: "harbor-pvc"
+      existingClaim: ""
       storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
       annotations: {}
     trivy:
-      existingClaim: "harbor-pvc"
+      existingClaim: ""
       storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteOnce
