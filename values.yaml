@@ -202,7 +202,7 @@ ipFamily:
 # For storing images and charts, you can also use "azure", "gcs", "s3",
 # "swift" or "oss". Set it in the "imageChartStorage" section
 persistence:
-  enabled: false
+  enabled: true
   # Setting it to "keep" to avoid removing PVCs during a helm delete
   # operation. Leaving it empty will delete PVCs after the chart deleted
   # (this does not apply for PVCs that are created for internal database
@@ -222,7 +222,7 @@ persistence:
       size: 5Gi
       annotations: {}
     chartmuseum:
-      existingClaim: "harbor-chartmuseum"
+      existingClaim: "harbor-pvc"
       storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteOnce
@@ -230,14 +230,14 @@ persistence:
       annotations: {}
     jobservice:
       jobLog:
-        existingClaim: "harbor-jobservice"
+        existingClaim: "harbor-pvc"
         storageClass: "harbor-nfs-sc"
         subPath: ""
         accessMode: ReadWriteOnce
         size: 1Gi
         annotations: {}
       scanDataExports:
-        existingClaim: "harbor-jobservice-scandata"
+        existingClaim: "harbor-pvc"
         storageClass: "harbor-nfs-sc"
         subPath: ""
         accessMode: ReadWriteOnce
@@ -246,25 +246,25 @@ persistence:
     # If external database is used, the following settings for database will
     # be ignored
     database:
-      existingClaim: ""
-      storageClass: ""
-      subPath: ""
+      existingClaim: "harbor-pvc"
+      storageClass: "harbor-nfs-sc"
+      subPath: "/srv/nfs/kubedata/"
       accessMode: ReadWriteOnce
       size: 1Gi
       annotations: {}
     # If external Redis is used, the following settings for Redis will
     # be ignored
     redis:
-      existingClaim: ""
-      storageClass: ""
-      subPath: ""
+      existingClaim: "harbor-pvc"
+      storageClass: "harbor-nfs-sc"
+      subPath: "/srv/nfs/kubedata/db"
       accessMode: ReadWriteOnce
       size: 1Gi
       annotations: {}
     trivy:
-      existingClaim: ""
-      storageClass: ""
-      subPath: ""
+      existingClaim: "harbor-pvc"
+      storageClass: "harbor-nfs-sc"
+      subPath: "/srv/nfs/kubedata/"
       accessMode: ReadWriteOnce
       size: 5Gi
       annotations: {}
