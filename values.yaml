@@ -217,14 +217,14 @@ persistence:
       # StorageClass will be used (the default).
       # Set it to "-" to disable dynamic provisioning
       storageClass: "_"
-      subPath: "/srv/nfs/kubedata/"
+      subPath: ""
       accessMode: ReadWriteOnce
       size: 5Gi
       annotations: {}
     chartmuseum:
       existingClaim: "harbor-pvc"
       storageClass: "harbor-nfs-sc"
-      subPath: "/srv/nfs/kubedata/storage"
+      subPath: ""
       accessMode: ReadWriteOnce
       size: 5Gi
       annotations: {}
@@ -232,14 +232,14 @@ persistence:
       jobLog:
         existingClaim: "harbor-pvc"
         storageClass: "harbor-nfs-sc"
-        subPath: "/srv/nfs/kubedata/storage"
+        subPath: ""
         accessMode: ReadWriteOnce
         size: 1Gi
         annotations: {}
       scanDataExports:
         existingClaim: "harbor-pvc"
         storageClass: "harbor-nfs-sc"
-        subPath: "/srv/nfs/kubedata/storage"
+        subPath: ""
         accessMode: ReadWriteOnce
         size: 1Gi
         annotations: {}
@@ -248,7 +248,7 @@ persistence:
     database:
       existingClaim: "harbor-pvc"
       storageClass: "harbor-nfs-sc"
-      subPath: "/srv/nfs/kubedata/db"
+      subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
       annotations: {}
@@ -257,14 +257,14 @@ persistence:
     redis:
       existingClaim: "harbor-pvc"
       storageClass: "harbor-nfs-sc"
-      subPath: "/srv/nfs/kubedata/db"
+      subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
       annotations: {}
     trivy:
       existingClaim: "harbor-pvc"
       storageClass: "harbor-nfs-sc"
-      subPath: "/srv/nfs/kubedata/storage"
+      subPath: ""
       accessMode: ReadWriteOnce
       size: 5Gi
       annotations: {}
