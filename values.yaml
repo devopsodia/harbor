@@ -263,7 +263,7 @@ persistence:
       annotations: {}
     trivy:
       existingClaim: "harbor-pvc"
-      storageClass: "harbor-nfs-sc"
+      storageClass: ""
       subPath: ""
       accessMode: ReadWriteOnce
       size: 5Gi
