@@ -657,7 +657,7 @@ trivy:
   # ignoreUnfixed the flag to display only fixed vulnerabilities
   ignoreUnfixed: false
   # insecure the flag to skip verifying registry certificate
-  insecure: false
+  insecure: true
   # gitHubToken the GitHub access token to download Trivy DB
   #
   # Trivy DB contains vulnerability information from NVD, Red Hat, and many other upstream vulnerability databases.
