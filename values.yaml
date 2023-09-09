@@ -1,7 +1,7 @@
 expose:
   # Set how to expose the service. Set the type as "ingress", "clusterIP", "nodePort" or "loadBalancer"
   # and fill the information in the corresponding section
-  type: ingress
+  type: "ingress"
   tls:
     # Enable TLS or not.
     # Delete the "ssl-redirect" annotations in "expose.ingress.annotations" when TLS is disabled and "expose.type" is "ingress"
@@ -16,7 +16,7 @@ expose:
     # The tls certificate can be generated manually or by cert manager
     # 3) none: configure no tls certificate for the ingress. If the default
     # tls certificate is configured in the ingress controller, choose this option
-    certSource: secret
+    certSource: "none"
     auto:
       # The common name used to generate the certificate, it's necessary
       # when the type isn't "ingress"
@@ -34,20 +34,20 @@ expose:
   ingress:
     hosts:
       core: devopsodia-harbor.com
-      notary: notary.harbor.domain
+      notary: notary.devopsodia-harbor.com
     # set to the type of ingress controller if it has specific requirements.
     # leave as `default` for most ingress controllers.
     # set to `gce` if using the GCE ingress controller
     # set to `ncp` if using the NCP (NSX-T Container Plugin) ingress controller
     # set to `alb` if using the ALB ingress controller
-    controller: "default"
+    controller: ""
     ## Allow .Capabilities.KubeVersion.Version to be overridden while creating ingress
     kubeVersionOverride: ""
     className: "nginx"
     annotations:
       # note different ingress controllers may require a different ssl-redirect annotation
       # for Envoy, use ingress.kubernetes.io/force-ssl-redirect: "true" and remove the nginx lines below
-      #ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/ssl-redirect: "true"
       ingress.kubernetes.io/proxy-body-size: "0"
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/proxy-body-size: "0"
@@ -98,7 +98,7 @@ expose:
     # The name of LoadBalancer service
     name: harbor
     # Set the IP if the LoadBalancer supports assigning IP
-    IP: "172.168.56.240"
+    IP: ""
     ports:
       # The service port Harbor listens on when serving HTTP
       httpPort: 80
@@ -189,10 +189,10 @@ internalTLS:
 ipFamily:
   # ipv6Enabled set to true if ipv6 is enabled in cluster, currently it affected the nginx related component
   ipv6:
-    enabled: false
+    enabled: true
   # ipv4Enabled set to true if ipv4 is enabled in cluster, currently it affected the nginx related component
   ipv4:
-    enabled: false
+    enabled: true
 
 # The persistence is enabled by default and a default StorageClass
 # is needed in the k8s cluster to provision volumes dynamically.
